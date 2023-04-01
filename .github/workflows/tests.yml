@@ -22,6 +22,7 @@ jobs:
       matrix:
         os: [macos-12, macos-latest]
         swift: ["5.6", "5.7"]
+        destination: ["platform=OS X,arch=x86_64,variant=Mac Catalyst", "platform=iOS Simulator,name=iPhone 13 Pro,OS=latest"]
     steps:
     - uses: actions/checkout@v3
     - uses: maxim-lobanov/setup-xcode@v1
@@ -34,10 +35,10 @@ jobs:
         swift-version: ${{ matrix.swift }}
     - name: Get swift version
       run: swift --version
-    - name: Build
-      run: swift build -v
+    - name: Run build
+      run: xcodebuild -scheme CombineViewController -destination '${{ matrix.destination }}' build
     - name: Run tests
-      run: swift test --enable-code-coverage -v
+      run: xcodebuild -scheme CombineViewController -destination '${{ matrix.destination }}' test -enableCodeCoverage YES
     - name: Test coverage
       uses: maxep/spm-lcov-action@0.3.0
       with:
