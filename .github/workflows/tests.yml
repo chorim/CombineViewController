@@ -18,6 +18,7 @@ jobs:
     name: Swift ${{ matrix.swift }} on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
         os: [macos-12, macos-latest]
         swift: ["5.6", "5.7"]
