@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "combineinterception",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/chorim/CombineInterception.git",
+      "state" : {
+        "revision" : "d2c2fb0f3323a037b752cf0fceaeb43c4a5d0ef1",
+        "version" : "0.1.0"
+      }
+    }
+  ],
+  "version" : 2
+}
