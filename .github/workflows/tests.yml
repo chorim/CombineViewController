@@ -5,16 +5,29 @@ name: Tests
 
 on:
   push:
-    branches: [ "main" ]
+    paths:
+      - '.github/workflows/tests.yml'
+      - '**/*.swift'
   pull_request:
-    branches: [ "main" ]
+      paths:
+      - '.github/workflows/tests.yml'
+      - '**/*.swift'
 
 jobs:
   build:
-    runs-on: macos-latest
-
+    name: Swift ${{ matrix.swift }} on ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest]
+        swift: ["5.5", "5.6", "5.7", "5.8"]
+    runs-on: ${{ matrix.os }}
     steps:
+    - uses: fwal/setup-swift@2040b795e5c453c3a05fcb8316496afc8a74f192
+      with:
+        swift-version: ${{ matrix.swift }}
     - uses: actions/checkout@v3
+    - name: Get swift version
+      run: swift --version
     - name: Build
       run: swift build -v
     - name: Run tests
