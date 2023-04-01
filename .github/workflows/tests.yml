@@ -39,7 +39,3 @@ jobs:
       run: xcodebuild -scheme CombineViewController -destination '${{ matrix.destination }}' build
     - name: Run tests
       run: xcodebuild -scheme CombineViewController -destination '${{ matrix.destination }}' test -enableCodeCoverage YES
-    - name: Test coverage
-      uses: maxep/spm-lcov-action@0.3.0
-      with:
-        output-file: ./coverage/lcov.info
